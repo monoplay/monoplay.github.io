@@ -1,5 +1,5 @@
 
-let LAUNCHER_FRONT_PRODUCT_DETAIL = LAUNCHER_FRONT_PRODUCT_DETAIL || {};
+var LAUNCHER_FRONT_PRODUCT_DETAIL = LAUNCHER_FRONT_PRODUCT_DETAIL || {};
 LAUNCHER_FRONT_PRODUCT_DETAIL.makeNamespace = function (ns_string) {
     let parts = ns_string.split('.'),
         parent = LAUNCHER_FRONT_PRODUCT_DETAIL,
