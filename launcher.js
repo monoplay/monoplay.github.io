@@ -25,18 +25,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     target : "",
     url : "",
     openEditor: function () {
-        $("div.app-monoplay-editor-modal")
-            .css({
-                position: 'fixed',
-                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-                zIndex: 10000,
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                msTransform: 'translate(-50%, -50%)',
-                webkitTransform: 'translate(-50%, -50%)'
-            })
-            .removeClass("displaynone");
+        $("div.app-monoplay-editor-background").removeClass("displaynone");
     },
     receiveMessage: function (e) {
         // if (e.origin != "https://store.moonsinsa.com") return false;
@@ -57,10 +46,10 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
             $("#orderFixArea button.actionCart").addClass("displaynone");
             // 디자인 버튼 추가
             $("div.action_button #actionCart").before(
-                "<a href='#none' class='btnSubmit sizeL' onClick=''><span id='actionDesign'>DESIGN</span></a>"
+                "<a href='#none' class='btnSubmit sizeL' onClick='openEditor()'><span id='actionDesign'>DESIGN</span></a>"
             );
             $("#orderFixArea button.actionCart").before(
-                "<a href='#none' class='btnSubmit sizeM' onClick=''><span id='actionDesign'>DESIGN</span></a>"
+                "<a href='#none' class='btnSubmit sizeM' onClick='openEditor()'><span id='actionDesign'>DESIGN</span></a>"
             );
 
         } else {
@@ -74,21 +63,31 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         if ($("#app-monoplay-editor-modal").length < 1) {
             $("head").append(
                 "<style>" +
-                "        .app-monoplay-editor-modal {" +
-                "        width: 300px;" +
-                "        padding: 20px 60px;" +
-                "        background-color: #fefefe;" +
+                "    .app-monoplay-editor-background {" +
+                "        position:fixed;" +
+                "        justify-content: center;" +
+                "        top: 0;" +
+                "        left: 0;" +
+                "        width: 100%;" +
+                "        height: 100%;" +
+                "        background-color: rgba(0,0,0,0.4);" +
+                "    }" +
+                "    .app-monoplay-editor-modal {" +
+                "        position:fixed;" +
+                "        top: 50%;" +
+                "        width: 85%;" +
+                "        height: 85%;" +
                 "        border: 1px solid #888;" +
-                "        border-radius: 3px;" +
+                "        border-radius: 10px;" +
+                "        transform:translateY(-50%);" +
                 "    }" +
                 "</style>"
             );
-
             $("body").append(
-                "<div class='app-monoplay-editor-background displaynone' style='position:fixed; z-index:9999; width:100%; height:100%; left:0; top:0; background: rgba(0,0,0,0.4);'>" +
-                "<div class='app-monoplay-editor-modal displaynone'>" +
+                "<div class='app-monoplay-editor-background displaynone'>" +
+                "<div class='app-monoplay-editor-modal'>" +
                 "    <iframe src='" + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target + "' id='app-monoplay-editor-iframe'></iframe>" +
-                "</div>"
+                "</div></div>"
             );
         }
     },
@@ -96,7 +95,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
 
 if (document.readyState === "complete") {
     LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setHtml();
-    window.addEventListener("message", LAUNCHER_FRONT_PRODUCT_DETAIL.editor.receiveMessage, false);
 } else {
     window.addEventListener("load", LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setHtml);
 }
+window.addEventListener("message", LAUNCHER_FRONT_PRODUCT_DETAIL.editor.receiveMessage, false);
