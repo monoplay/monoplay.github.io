@@ -65,6 +65,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
                 "<style>" +
                 "    .app-monoplay-editor-background {" +
                 "        position:fixed;" +
+                "        z-index:9999;" +
                 "        justify-content: center;" +
                 "        top: 0;" +
                 "        left: 0;" +
@@ -75,18 +76,23 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
                 "    .app-monoplay-editor-modal {" +
                 "        position:fixed;" +
                 "        top: 50%;" +
+                "        left: 50%;" +
                 "        width: 85%;" +
                 "        height: 85%;" +
-                "        border: 1px solid #888;" +
-                "        border-radius: 10px;" +
-                "        transform:translateY(-50%);" +
+                "        transform:translate(-50%, -50%);" +
+                "    }" +
+                "    .app-monoplay-editor-iframe {" +
+                "        top: 0;" +
+                "        left: 0;" +
+                "        width: 100%;" +
+                "        height: 100%;" +
                 "    }" +
                 "</style>"
             );
             $("body").append(
                 "<div class='app-monoplay-editor-background displaynone'>" +
                 "<div class='app-monoplay-editor-modal'>" +
-                "    <iframe src='" + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target + "' id='app-monoplay-editor-iframe'></iframe>" +
+                "    <iframe src='" + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target + "' class='app-monoplay-editor-iframe'></iframe>" +
                 "</div></div>"
             );
         }
