@@ -22,6 +22,22 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.makeNamespace('LAUNCHER_FRONT_PRODUCT_DETAIL.edito
 
 LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     is_design_prod : false,
+    target : "",
+    url : "",
+    openEditor: function () {
+        $("div.app-monoplay-editor-modal")
+            .css({
+                position: 'fixed',
+                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+                zIndex: 10000,
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                msTransform: 'translate(-50%, -50%)',
+                webkitTransform: 'translate(-50%, -50%)'
+            })
+            .removeClass("displaynone");
+    },
     receiveMessage: function (e) {
         // if (e.origin != "https://store.moonsinsa.com") return false;
         const result = JSON.parse(decodeURIComponent(e.data));
@@ -30,7 +46,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     setHtml: function () {
         const th_design_prod = $("th:contains('net.monoplay.design')");
         if (th_design_prod.length > 0) {
-            this.is_design_prod = true;
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.is_design_prod = true;
             // 옵션 안 보이게
             th_design_prod.eq(0).parent("tr").addClass("displaynone");
             // 구매 버튼 안 보이게
@@ -50,22 +66,33 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         } else {
             return false;
         }
-        if ($("#modal_monoplay_editor").length < 1) {
+
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
+            window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo;
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url = document.location.protocol + "//" + document.location.host;
+
+        if ($("#app-monoplay-editor-modal").length < 1) {
+            $("head").append(
+                "<style>" +
+                "        .app-monoplay-editor-modal {" +
+                "        width: 300px;" +
+                "        padding: 20px 60px;" +
+                "        background-color: #fefefe;" +
+                "        border: 1px solid #888;" +
+                "        border-radius: 3px;" +
+                "    }" +
+                "</style>"
+            );
+
             $("body").append(
-                "<div id='modal_monoplay_editor' class='displaynone'>" +
-                "    <iframe src='about:blank' id='monoplay_iframe'></iframe>" +
-                "    <a class='modal_close_btn'>닫기</a>" +
+                "<div class='app-monoplay-editor-background displaynone' style='position:fixed; z-index:9999; width:100%; height:100%; left:0; top:0; background: rgba(0,0,0,0.4);'>" +
+                "<div class='app-monoplay-editor-modal displaynone'>" +
+                "    <iframe src='" + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target + "' id='app-monoplay-editor-iframe'></iframe>" +
                 "</div>"
             );
         }
     },
 }
-
-
-
-
-
-
 
 if (document.readyState === "complete") {
     LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setHtml();
