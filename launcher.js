@@ -46,10 +46,10 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
             $("#orderFixArea button.actionCart").addClass("displaynone");
             // 디자인 버튼 추가
             $("div.action_button #actionCart").before(
-                "<a href='#none' class='btnSubmit sizeL' onClick='openEditor()'><span id='actionDesign'>DESIGN</span></a>"
+                "<a href='#none' class='btnSubmit sizeL' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span id='actionDesign'>DESIGN</span></a>"
             );
             $("#orderFixArea button.actionCart").before(
-                "<a href='#none' class='btnSubmit sizeM' onClick='openEditor()'><span id='actionDesign'>DESIGN</span></a>"
+                "<a href='#none' class='btnSubmit sizeM' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span id='actionDesign'>DESIGN</span></a>"
             );
 
         } else {
@@ -71,7 +71,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
                 "        left: 0;" +
                 "        width: 100%;" +
                 "        height: 100%;" +
-                "        background-color: rgba(0,0,0,0.4);" +
+                "        background-color: rgba(0,0,0,0.6);" +
                 "    }" +
                 "    .app-monoplay-editor-modal {" +
                 "        position:fixed;" +
