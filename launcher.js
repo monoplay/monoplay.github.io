@@ -28,16 +28,28 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         $("div.app-monoplay-editor-background").removeClass("displaynone");
     },
     receiveMessage: function (e) {
-        // if (e.origin != "https://store.moonsinsa.com") return false;
-        const result = JSON.parse(decodeURIComponent(e.data));
-        $("th:contains('net.monoplay.design')").next('td').children('input').val(result.design_id);
+        if (e.origin !== "https://store.moonsinsa.com:3000") return false;
+        // const result = JSON.parse(decodeURIComponent(e.data));
+        $("th:contains('net.monoplay.design')").next('td').children('input').val(e.data.message);
+
+        // 구매 버튼 보이게
+        $("div.action_button #actionBuy").parent("a").removeClass("displaynone");
+        $("#orderFixArea #actionBuy").parent("a").removeClass("displaynone");
+        // 카트 버튼 보이게
+        $("div.action_button #actionCart").removeClass("displaynone");
+        $("#orderFixArea button.actionCart").removeClass("displaynone");
+
+        // close editor
+        $("div.app-monoplay-editor-background").addClass("displaynone");
     },
     setHtml: function () {
         const th_design_prod = $("th:contains('net.monoplay.design')");
         if (th_design_prod.length > 0) {
             LAUNCHER_FRONT_PRODUCT_DETAIL.editor.is_design_prod = true;
+
             // 옵션 안 보이게
-            th_design_prod.eq(0).parent("tr").addClass("displaynone");
+            // th_design_prod.eq(0).parent("tr").addClass("displaynone");
+
             // 구매 버튼 안 보이게
             $("div.action_button #actionBuy").parent("a").addClass("displaynone");
             $("#orderFixArea #actionBuy").parent("a").addClass("displaynone");
@@ -82,6 +94,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
                 "        transform:translate(-50%, -50%);" +
                 "    }" +
                 "    .app-monoplay-editor-iframe {" +
+                "        border-radius: 8px;" +
                 "        top: 0;" +
                 "        left: 0;" +
                 "        width: 100%;" +
@@ -104,4 +117,4 @@ if (document.readyState === "complete") {
 } else {
     window.addEventListener("load", LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setHtml);
 }
-window.addEventListener("message", LAUNCHER_FRONT_PRODUCT_DETAIL.editor.receiveMessage, false);
+window.addEventListener("message", LAUNCHER_FRONT_PRODUCT_DETAIL.editor.receiveMessage);
