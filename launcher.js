@@ -21,14 +21,19 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.makeNamespace = function (ns_string) {
 LAUNCHER_FRONT_PRODUCT_DETAIL.makeNamespace('LAUNCHER_FRONT_PRODUCT_DETAIL.editor');
 
 LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
+    // 에디터가 필요한 디자인 상품 여부
     is_design_prod : false,
+    // 디자인 아이디
+    design_id : "",
     target : "",
-    url : "",
+    // targetOrigin 은 추후 db에서 가져오기
+    // url : "",
+
     openEditor: function () {
         $("div.app-monoplay-editor-background").removeClass("displaynone");
     },
     receiveMessage: function (e) {
-        if (e.origin !== "https://store.moonsinsa.com:3000") return false;
+        if (e.origin !== 'https://store.moonsinsa.com:3000') return false;
         // const result = JSON.parse(decodeURIComponent(e.data));
         $("th:contains('net.monoplay.design')").next('td').children('input').val(e.data.message);
 
@@ -45,24 +50,46 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     setHtml: function () {
         const th_design_prod = $("th:contains('net.monoplay.design')");
         if (th_design_prod.length > 0) {
-            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.is_design_prod = true;
-
             // 옵션 안 보이게
             // th_design_prod.eq(0).parent("tr").addClass("displaynone");
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.is_design_prod = true;
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = th_design_prod.next('td').children('input').val();
 
-            // 구매 버튼 안 보이게
-            $("div.action_button #actionBuy").parent("a").addClass("displaynone");
-            $("#orderFixArea #actionBuy").parent("a").addClass("displaynone");
-            // 카트 버튼 안 보이게
-            $("div.action_button #actionCart").addClass("displaynone");
-            $("#orderFixArea button.actionCart").addClass("displaynone");
-            // 디자인 버튼 추가
-            $("div.action_button #actionCart").before(
-                "<a href='#none' class='btnSubmit sizeL' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span id='actionDesign'>DESIGN</span></a>"
-            );
-            $("#orderFixArea button.actionCart").before(
-                "<a href='#none' class='btnSubmit sizeM' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span id='actionDesign'>DESIGN</span></a>"
-            );
+            // 디자인 업데이트
+            if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
+                // 구매 버튼 보이게
+                $("div.action_button #actionBuy").parent("a").removeClass("displaynone");
+                $("#orderFixArea #actionBuy").parent("a").removeClass("displaynone");
+                // 카트 버튼 보이게
+                $("div.action_button #actionCart").removeClass("displaynone");
+                $("#orderFixArea button.actionCart").removeClass("displaynone");
+                // black 디자인 버튼 제거
+                $("a.app-monoplay-button-design-black").remove();
+                // white 디자인 버튼 추가
+                $("div.action_button #actionCart").before(
+                    "<button type='button' class='btnNormal sizeL actionDesign app-monoplay-button-design-white' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
+                );
+                $("#orderFixArea button.actionCart").before(
+                    "<button type='button' class='btnNormal sizeM actionDesign app-monoplay-button-design-white' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
+                );
+                
+            } else {
+                // 구매 버튼 안 보이게
+                $("div.action_button #actionBuy").parent("a").addClass("displaynone");
+                $("#orderFixArea #actionBuy").parent("a").addClass("displaynone");
+                // 카트 버튼 안 보이게
+                $("div.action_button #actionCart").addClass("displaynone");
+                $("#orderFixArea button.actionCart").addClass("displaynone");
+                // white 디자인 버튼 제거
+                $("a.app-monoplay-button-design-white").remove();
+                // black 디자인 버튼 추가
+                $("div.action_button #actionCart").before(
+                    "<a href='#none' class='btnSubmit sizeL app-monoplay-button-design-black' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
+                );
+                $("#orderFixArea button.actionCart").before(
+                    "<a href='#none' class='btnSubmit sizeM app-monoplay-button-design-black' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
+                );
+            }
 
         } else {
             return false;
@@ -70,7 +97,9 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
 
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
             window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo;
-        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url = document.location.protocol + "//" + document.location.host;
+
+        // targetOrigin 은 추후 db에서 가져오기
+        // LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url = document.location.protocol + "//" + document.location.host;
 
         if ($("#app-monoplay-editor-modal").length < 1) {
             $("head").append(
