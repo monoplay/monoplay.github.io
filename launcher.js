@@ -36,7 +36,8 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         $("th:contains('net.monoplay.design')").next('td').children('input').val(e.data.message);
 
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setModify();
-
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setTarget();
+        
         // close editor
         $("div.app-monoplay-editor-background").addClass("displaynone");
     },
@@ -48,7 +49,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         $("div.action_button #actionCart").addClass("displaynone");
         $("#orderFixArea button.actionCart").addClass("displaynone");
         // 디자인 버튼 제거
-        $("a.app-monoplay-button-design").remove();
+        $(".app-monoplay-button-design").remove();
         // black 디자인 버튼 추가
         $("div.action_button #actionCart").before(
             "<a href='#none' class='btnSubmit sizeL app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
@@ -65,7 +66,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         $("div.action_button #actionCart").removeClass("displaynone");
         $("#orderFixArea button.actionCart").removeClass("displaynone");
         // 디자인 버튼 제거
-        $("a.app-monoplay-button-design").remove();
+        $(".app-monoplay-button-design").remove();
         // white 디자인 버튼 추가
         $("div.action_button #actionCart").before(
             "<button type='button' class='btnNormal sizeL app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
