@@ -37,7 +37,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
 
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setModify();
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setTarget();
-        
+
         // close editor
         $("div.app-monoplay-editor-background").addClass("displaynone");
     },
@@ -79,7 +79,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = $("th:contains('net.monoplay.design')").next('td').children('input').val();
 
         if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
-            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = 'https://naver.com'
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/";
         } else {
             LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
                 window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo;
