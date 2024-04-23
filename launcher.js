@@ -28,7 +28,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     target : "",
 
     openEditor: function () {
-        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = th_design_prod.next('td').children('input').val();
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = $("th:contains('net.monoplay.design')").next('td').children('input').val();
 
         if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
             LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = 'about:blank'
