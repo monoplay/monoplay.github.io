@@ -37,15 +37,44 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         // const result = JSON.parse(decodeURIComponent(e.data));
         $("th:contains('net.monoplay.design')").next('td').children('input').val(e.data.message);
 
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setModify();
+
+        // close editor
+        $("div.app-monoplay-editor-background").addClass("displaynone");
+    },
+    setCreate: function () {
+        // 구매 버튼 안 보이게
+        $("div.action_button #actionBuy").parent("a").addClass("displaynone");
+        $("#orderFixArea #actionBuy").parent("a").addClass("displaynone");
+        // 카트 버튼 안 보이게
+        $("div.action_button #actionCart").addClass("displaynone");
+        $("#orderFixArea button.actionCart").addClass("displaynone");
+        // white 디자인 버튼 제거
+        $("a.app-monoplay-button-design-white").remove();
+        // black 디자인 버튼 추가
+        $("div.action_button #actionCart").before(
+            "<a href='#none' class='btnSubmit sizeL app-monoplay-button-design-black' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
+        );
+        $("#orderFixArea button.actionCart").before(
+            "<a href='#none' class='btnSubmit sizeM app-monoplay-button-design-black' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
+        );
+    },
+    setModify: function () {
         // 구매 버튼 보이게
         $("div.action_button #actionBuy").parent("a").removeClass("displaynone");
         $("#orderFixArea #actionBuy").parent("a").removeClass("displaynone");
         // 카트 버튼 보이게
         $("div.action_button #actionCart").removeClass("displaynone");
         $("#orderFixArea button.actionCart").removeClass("displaynone");
-
-        // close editor
-        $("div.app-monoplay-editor-background").addClass("displaynone");
+        // black 디자인 버튼 제거
+        $("a.app-monoplay-button-design-black").remove();
+        // white 디자인 버튼 추가
+        $("div.action_button #actionCart").before(
+            "<button type='button' class='btnNormal sizeL actionDesign app-monoplay-button-design-white' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
+        );
+        $("#orderFixArea button.actionCart").before(
+            "<button type='button' class='btnNormal sizeM actionDesign app-monoplay-button-design-white' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
+        );
     },
     setHtml: function () {
         const th_design_prod = $("th:contains('net.monoplay.design')");
@@ -55,40 +84,10 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
             LAUNCHER_FRONT_PRODUCT_DETAIL.editor.is_design_prod = true;
             LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = th_design_prod.next('td').children('input').val();
 
-            // 디자인 업데이트
             if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
-                // 구매 버튼 보이게
-                $("div.action_button #actionBuy").parent("a").removeClass("displaynone");
-                $("#orderFixArea #actionBuy").parent("a").removeClass("displaynone");
-                // 카트 버튼 보이게
-                $("div.action_button #actionCart").removeClass("displaynone");
-                $("#orderFixArea button.actionCart").removeClass("displaynone");
-                // black 디자인 버튼 제거
-                $("a.app-monoplay-button-design-black").remove();
-                // white 디자인 버튼 추가
-                $("div.action_button #actionCart").before(
-                    "<button type='button' class='btnNormal sizeL actionDesign app-monoplay-button-design-white' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
-                );
-                $("#orderFixArea button.actionCart").before(
-                    "<button type='button' class='btnNormal sizeM actionDesign app-monoplay-button-design-white' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
-                );
-                
+                LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setModify();
             } else {
-                // 구매 버튼 안 보이게
-                $("div.action_button #actionBuy").parent("a").addClass("displaynone");
-                $("#orderFixArea #actionBuy").parent("a").addClass("displaynone");
-                // 카트 버튼 안 보이게
-                $("div.action_button #actionCart").addClass("displaynone");
-                $("#orderFixArea button.actionCart").addClass("displaynone");
-                // white 디자인 버튼 제거
-                $("a.app-monoplay-button-design-white").remove();
-                // black 디자인 버튼 추가
-                $("div.action_button #actionCart").before(
-                    "<a href='#none' class='btnSubmit sizeL app-monoplay-button-design-black' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
-                );
-                $("#orderFixArea button.actionCart").before(
-                    "<a href='#none' class='btnSubmit sizeM app-monoplay-button-design-black' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
-                );
+                LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setCreate();
             }
 
         } else {
