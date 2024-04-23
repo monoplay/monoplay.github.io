@@ -28,17 +28,6 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     target : "",
 
     openEditor: function () {
-        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = $("th:contains('net.monoplay.design')").next('td').children('input').val();
-
-        if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
-            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = 'about:blank'
-        } else {
-            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
-                window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo;
-        }
-
-        $('.app-monoplay-editor-iframe').attr('src', LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target);
-
         $("div.app-monoplay-editor-background").removeClass("displaynone");
     },
     receiveMessage: function (e) {
@@ -84,6 +73,18 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         $("#orderFixArea button.actionCart").before(
             "<button type='button' class='btnNormal sizeM app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
         );
+    },
+    setTarget: function () {
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = $("th:contains('net.monoplay.design')").next('td').children('input').val();
+
+        if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = 'https://naver.com'
+        } else {
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
+                window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo;
+        }
+
+        $('.app-monoplay-editor-iframe').attr('src', LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target);
     },
     setHtml: function () {
         const th_design_prod = $("th:contains('net.monoplay.design')");
@@ -136,10 +137,11 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
             $("body").append(
                 "<div class='app-monoplay-editor-background displaynone'>" +
                 "<div class='app-monoplay-editor-modal'>" +
-                "    <iframe src='about:blank' class='app-monoplay-editor-iframe'></iframe>" +
+                "    <iframe src='" + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target + "' class='app-monoplay-editor-iframe'></iframe>" +
                 "</div></div>"
             );
         }
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setTarget();
     },
 }
 
