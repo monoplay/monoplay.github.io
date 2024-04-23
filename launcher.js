@@ -26,10 +26,19 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     // 디자인 아이디
     design_id : "",
     target : "",
-    // targetOrigin 은 추후 db에서 가져오기
-    // url : "",
 
     openEditor: function () {
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = th_design_prod.next('td').children('input').val();
+
+        if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = 'about:blank'
+        } else {
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
+                window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo;
+        }
+
+        $('.app-monoplay-editor-iframe').attr('src', LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target);
+
         $("div.app-monoplay-editor-background").removeClass("displaynone");
     },
     receiveMessage: function (e) {
@@ -49,14 +58,14 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         // 카트 버튼 안 보이게
         $("div.action_button #actionCart").addClass("displaynone");
         $("#orderFixArea button.actionCart").addClass("displaynone");
-        // white 디자인 버튼 제거
-        $("a.app-monoplay-button-design-white").remove();
+        // 디자인 버튼 제거
+        $("a.app-monoplay-button-design").remove();
         // black 디자인 버튼 추가
         $("div.action_button #actionCart").before(
-            "<a href='#none' class='btnSubmit sizeL app-monoplay-button-design-black' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
+            "<a href='#none' class='btnSubmit sizeL app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
         );
         $("#orderFixArea button.actionCart").before(
-            "<a href='#none' class='btnSubmit sizeM app-monoplay-button-design-black' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
+            "<a href='#none' class='btnSubmit sizeM app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'><span>DESIGN</span></a>"
         );
     },
     setModify: function () {
@@ -66,14 +75,14 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         // 카트 버튼 보이게
         $("div.action_button #actionCart").removeClass("displaynone");
         $("#orderFixArea button.actionCart").removeClass("displaynone");
-        // black 디자인 버튼 제거
-        $("a.app-monoplay-button-design-black").remove();
+        // 디자인 버튼 제거
+        $("a.app-monoplay-button-design").remove();
         // white 디자인 버튼 추가
         $("div.action_button #actionCart").before(
-            "<button type='button' class='btnNormal sizeL actionDesign app-monoplay-button-design-white' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
+            "<button type='button' class='btnNormal sizeL app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
         );
         $("#orderFixArea button.actionCart").before(
-            "<button type='button' class='btnNormal sizeM actionDesign app-monoplay-button-design-white' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
+            "<button type='button' class='btnNormal sizeM app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
         );
     },
     setHtml: function () {
@@ -93,12 +102,6 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         } else {
             return false;
         }
-
-        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
-            window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo;
-
-        // targetOrigin 은 추후 db에서 가져오기
-        // LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url = document.location.protocol + "//" + document.location.host;
 
         if ($("#app-monoplay-editor-modal").length < 1) {
             $("head").append(
@@ -133,7 +136,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
             $("body").append(
                 "<div class='app-monoplay-editor-background displaynone'>" +
                 "<div class='app-monoplay-editor-modal'>" +
-                "    <iframe src='" + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target + "' class='app-monoplay-editor-iframe'></iframe>" +
+                "    <iframe src='about:blank' class='app-monoplay-editor-iframe'></iframe>" +
                 "</div></div>"
             );
         }
