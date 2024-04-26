@@ -147,7 +147,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setTarget();
 
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url = document.location.protocol + "//" + document.location.host;
-        const editor = document.getElementById('child_iframe').contentWindow;
+        const editor = document.getElementById('app-monoplay-editor-iframe').contentWindow;
         editor.postMessage({
             imgSource: $('div.thumbnail a img').attr('src'),
             imgAlt: $('div.thumbnail a img').attr('alt'),
