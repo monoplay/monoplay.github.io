@@ -26,6 +26,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     // 디자인 아이디
     design_id : "",
     target : "",
+    url: "",
 
     openEditor: function () {
         $("div.app-monoplay-editor-background").removeClass("displaynone");
@@ -139,11 +140,19 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
             $("body").append(
                 "<div class='app-monoplay-editor-background displaynone'>" +
                 "<div class='app-monoplay-editor-modal'>" +
-                "    <iframe src='" + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target + "' class='app-monoplay-editor-iframe'></iframe>" +
+                "    <iframe src='" + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target + "' class='app-monoplay-editor-iframe' id='app-monoplay-editor-iframe'></iframe>" +
                 "</div></div>"
             );
         }
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setTarget();
+
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url = document.location.protocol + "//" + document.location.host;
+        const editor = document.getElementById('child_iframe').contentWindow;
+        editor.postMessage({
+            imgSource: $('div.thumbnail a img').attr('src'),
+            imgAlt: $('div.thumbnail a img').attr('alt'),
+            url: LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url
+        }, "https://store.moonsinsa.com:3000");
     },
 }
 
