@@ -152,7 +152,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
             imgSource: $('div.thumbnail a img').attr('src'),
             imgAlt: $('div.thumbnail a img').attr('alt'),
             url: LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url
-        }, LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url);
+        }, 'https://store.moonsinsa.com:3000');
     },
 }
 
