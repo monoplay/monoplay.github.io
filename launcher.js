@@ -26,15 +26,14 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     // 디자인 아이디
     design_id : "",
     target : "",
-    url: "",
-
+    query : "",
     openEditor: function () {
-        const editor = document.getElementById('app-monoplay-editor-iframe').contentWindow;
-        editor.postMessage({
-            imgSource: $('div.thumbnail a img').attr('src'),
-            imgAlt: $('div.thumbnail a img').attr('alt'),
-            url: LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url
-        }, 'https://store.moonsinsa.com:3000');
+        // const editor = document.getElementById('app-monoplay-editor-iframe').contentWindow;
+        // editor.postMessage({
+        //     imgSource: $('div.thumbnail a img').attr('src'),
+        //     imgAlt: $('div.thumbnail a img').attr('alt'),
+        //     url: LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url
+        // }, 'https://store.moonsinsa.com:3000');
         $("div.app-monoplay-editor-background").removeClass("displaynone");
     },
     receiveMessage: function (e) {
@@ -87,10 +86,10 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
 
         if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
             LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
-                LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id;
+                LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.query;
         } else {
             LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
-                window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo;
+                window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.query;
         }
 
         $('.app-monoplay-editor-iframe').attr('src', LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target);
@@ -150,9 +149,14 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
                 "</div></div>"
             );
         }
+
+        // LAUNCHER_FRONT_PRODUCT_DETAIL.editor.img_source = $('div.thumbnail a img').attr('src');
+        // LAUNCHER_FRONT_PRODUCT_DETAIL.editor.img_alt = $('div.thumbnail a img').attr('alt');
+        // LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url = document.location.protocol + "//" + document.location.host;
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.query = "?imgSource=" + $('div.thumbnail a img').attr('src') + 
+            "&imgAlt=" + $('div.thumbnail a img').attr('alt') + "&url=" + document.location.protocol + "//" + document.location.host;
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setTarget();
 
-        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url = document.location.protocol + "//" + document.location.host;
     },
 }
 
