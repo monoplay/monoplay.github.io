@@ -38,11 +38,13 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     },
     receiveMessage: function (e) {
         if (e.origin !== 'https://store.moonsinsa.com:3000') return false;
-        // const result = JSON.parse(decodeURIComponent(e.data));
-        $("th:contains('net.monoplay.design')").next('td').children('input').val(e.data.message);
 
-        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setModify();
-        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setTarget();
+        if (e.data.message.length > 0) {
+            $("th:contains('net.monoplay.design')").next('td').children('input').val(e.data.message);
+
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setModify();
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setTarget();
+        }
 
         // close editor
         $("div.app-monoplay-editor-background").addClass("displaynone");
@@ -153,7 +155,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         // LAUNCHER_FRONT_PRODUCT_DETAIL.editor.img_source = $('div.thumbnail a img').attr('src');
         // LAUNCHER_FRONT_PRODUCT_DETAIL.editor.img_alt = $('div.thumbnail a img').attr('alt');
         // LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url = document.location.protocol + "//" + document.location.host;
-        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.query = "?imgSource=" + $('div.thumbnail a img').attr('src') + 
+        LAUNCHER_FRONT_PRODUCT_DETAIL.editor.query = "?imgSource=" + $('div.thumbnail a img').attr('src') +
             "&imgAlt=" + $('div.thumbnail a img').attr('alt') + "&url=" + document.location.protocol + "//" + document.location.host;
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setTarget();
 
