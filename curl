@@ -1,0 +1,29 @@
+{
+    "shop_no": 1,
+    "request": {
+        "src": "https://monoplay.github.io/launcher.js",
+        "display_location": [
+            "PRODUCT_DETAIL"
+        ],
+        "exclude_path": [
+        ],
+        "skin_no": [
+            3
+        ]
+    }
+}
+
+{
+    "shop_no": 1,
+    "request": {
+        "src": "https://monoplay.github.io/launcher.js",
+        "display_location": [
+            "PRODUCT_DETAIL"
+        ],
+        "exclude_path": [
+        ],
+        "skin_no": [
+            3
+        ]
+    }
+}
