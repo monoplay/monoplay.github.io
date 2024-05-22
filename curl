@@ -27,3 +27,18 @@
         ]
     }
 }
+
+{
+    "shop_no": 1,
+    "request": {
+        "src": "https://monoplay.github.io/orderBasket.js",
+        "display_location": [
+            "ORDER_BASKET"
+        ],
+        "exclude_path": [
+        ],
+        "skin_no": [
+            3
+        ]
+    }
+}
