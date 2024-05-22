@@ -1,10 +1,10 @@
-var LAUNCHER_FRONT_MYSHOP_WISHLIST = LAUNCHER_FRONT_MYSHOP_WISHLIST || {};
-LAUNCHER_FRONT_MYSHOP_WISHLIST.makeNamespace = function (ns_string) {
+var LAUNCHER_FRONT_ORDER_BASKET = LAUNCHER_FRONT_ORDER_BASKET || {};
+LAUNCHER_FRONT_ORDER_BASKET.makeNamespace = function (ns_string) {
     let parts = ns_string.split('.'),
-        parent = LAUNCHER_FRONT_MYSHOP_WISHLIST,
+        parent = LAUNCHER_FRONT_ORDER_BASKET,
         i;
     // 처음에 중복되는 전역 객체명은 제거
-    if (parts[0] === "LAUNCHER_FRONT_MYSHOP_WISHLIST") {
+    if (parts[0] === "LAUNCHER_FRONT_ORDER_BASKET") {
         parts = parts.slice(1);
     }
     for (i = 0; i < parts.length; i += 1) {
@@ -17,9 +17,9 @@ LAUNCHER_FRONT_MYSHOP_WISHLIST.makeNamespace = function (ns_string) {
     return parent;
 }
 // 네임스페이스 생성 함수
-LAUNCHER_FRONT_MYSHOP_WISHLIST.makeNamespace('LAUNCHER_FRONT_MYSHOP_WISHLIST.editor');
+LAUNCHER_FRONT_ORDER_BASKET.makeNamespace('LAUNCHER_FRONT_ORDER_BASKET.editor');
 
-LAUNCHER_FRONT_MYSHOP_WISHLIST.editor = {
+LAUNCHER_FRONT_ORDER_BASKET.editor = {
     setHtml: function () {
         // button 안 보이게
         $('div.prdBox .buttonGroup').addClass("displaynone");
@@ -27,18 +27,20 @@ LAUNCHER_FRONT_MYSHOP_WISHLIST.editor = {
         const option = $("span:contains('net.monoplay.design').optionStr");
         option.addClass("displaynone");
 
-        const design_id = option.text().replace('[net.monoplay.design : ', '').replace(']', '');
-        const target = option.closest("div.description").find("a.ec-product-name").prop("href") +
-            '/design_id/' + design_id;
+        option.each(function (index, item) {
+            const design_id = $(item).text().replace('[net.monoplay.design : ', '').replace(']', '');
+            const target = $(item).closest("div.description").find("a.ec-product-name").prop("href") +
+                '/design_id/' + design_id;
 
-        // target url ㅂㅏ꾸기
-        option.closest("div.description").find("a.ec-product-name").prop("href", target);
-        option.closest("div.prdBox").find("a:eq(0)").prop("href", target);
+            // target url ㅂㅏ꾸기
+            $(item).closest("div.description").find("a.ec-product-name").prop("href", target);
+            $(item).closest("div.prdBox").find("a:eq(0)").prop("href", target);
+        });
     },
 }
 
 if (document.readyState === "complete") {
-    LAUNCHER_FRONT_MYSHOP_WISHLIST.editor.setHtml();
+    LAUNCHER_FRONT_ORDER_BASKET.editor.setHtml();
 } else {
-    window.addEventListener("load", LAUNCHER_FRONT_MYSHOP_WISHLIST.editor.setHtml);
+    window.addEventListener("load", LAUNCHER_FRONT_ORDER_BASKET.editor.setHtml);
 }
