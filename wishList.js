@@ -31,10 +31,10 @@ LAUNCHER_FRONT_MYSHOP_WISHLIST.editor = {
             const design_id = $(item).text().replace(/net.monoplay.design|:|\[|\]|\s/gi, "");
             const target = $(item).closest("div.description").find("a.ec-product-name").prop("href") +
                 '/design_id/' + design_id;
-
+            
             // target url ㅂㅏ꾸기
             $(item).closest("div.description").find("a.ec-product-name").prop("href", target);
-            $(item).closest("div.prdBox").find("a:eq(0)").prop("href", target);
+            $(item).closest("div.prdBox").children("div.thumbnail").find("a:eq(0)").prop("href", target);
         });
     },
 }
