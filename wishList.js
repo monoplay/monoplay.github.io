@@ -1,10 +1,10 @@
-var LAUNCHER_FRONT_ORDER_BASKET = LAUNCHER_FRONT_ORDER_BASKET || {};
-LAUNCHER_FRONT_ORDER_BASKET.makeNamespace = function (ns_string) {
+var LAUNCHER_FRONT_MYSHOP_WISHLIST = LAUNCHER_FRONT_MYSHOP_WISHLIST || {};
+LAUNCHER_FRONT_MYSHOP_WISHLIST.makeNamespace = function (ns_string) {
     let parts = ns_string.split('.'),
-        parent = LAUNCHER_FRONT_ORDER_BASKET,
+        parent = LAUNCHER_FRONT_MYSHOP_WISHLIST,
         i;
     // 처음에 중복되는 전역 객체명은 제거
-    if (parts[0] === "LAUNCHER_FRONT_ORDER_BASKET") {
+    if (parts[0] === "LAUNCHER_FRONT_MYSHOP_WISHLIST") {
         parts = parts.slice(1);
     }
     for (i = 0; i < parts.length; i += 1) {
@@ -17,9 +17,9 @@ LAUNCHER_FRONT_ORDER_BASKET.makeNamespace = function (ns_string) {
     return parent;
 }
 // 네임스페이스 생성 함수
-LAUNCHER_FRONT_ORDER_BASKET.makeNamespace('LAUNCHER_FRONT_ORDER_BASKET.editor');
+LAUNCHER_FRONT_MYSHOP_WISHLIST.makeNamespace('LAUNCHER_FRONT_MYSHOP_WISHLIST.editor');
 
-LAUNCHER_FRONT_ORDER_BASKET.editor = {
+LAUNCHER_FRONT_MYSHOP_WISHLIST.editor = {
     setHtml: function () {
         // button 안 보이게
         $('div.prdBox .buttonGroup').addClass("displaynone");
@@ -40,7 +40,7 @@ LAUNCHER_FRONT_ORDER_BASKET.editor = {
 }
 
 if (document.readyState === "complete") {
-    LAUNCHER_FRONT_ORDER_BASKET.editor.setHtml();
+    LAUNCHER_FRONT_MYSHOP_WISHLIST.editor.setHtml();
 } else {
-    window.addEventListener("load", LAUNCHER_FRONT_ORDER_BASKET.editor.setHtml);
+    window.addEventListener("load", LAUNCHER_FRONT_MYSHOP_WISHLIST.editor.setHtml);
 }
