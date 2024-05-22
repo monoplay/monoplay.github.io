@@ -16,9 +16,9 @@
 {
     "shop_no": 1,
     "request": {
-        "src": "https://monoplay.github.io/launcher.js",
+        "src": "https://monoplay.github.io/wishList.js",
         "display_location": [
-            "PRODUCT_DETAIL"
+            "MYSHOP_WISHLIST"
         ],
         "exclude_path": [
         ],
