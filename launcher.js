@@ -97,21 +97,13 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         $('.app-monoplay-editor-iframe').attr('src', LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target);
     },
     setHtml: function () {
-        const th_design_prod = $("th:contains('net.monoplay.design')");
-        if (th_design_prod.length > 0) {
-            // 옵션 안 보이게
-            // th_design_prod.eq(0).parent("tr").addClass("displaynone");
-            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.is_design_prod = true;
-            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = th_design_prod.next('td').children('input').val();
 
-            if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
-                LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setModify();
-            } else {
-                LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setCreate();
-            }
-
+        // 옵션 안 보이게
+        // th_design_prod.eq(0).parent("tr").addClass("displaynone");
+        if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setModify();
         } else {
-            return false;
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setCreate();
         }
 
         if ($("#app-monoplay-editor-modal").length < 1) {
@@ -160,11 +152,26 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setTarget();
 
     },
+    onLoad: function () {
+        const th_design_prod = $("th:contains('net.monoplay.design')");
+        if (th_design_prod.length > 0) {
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.is_design_prod = true;
+            const paths = document.location.pathname.split('/');
+            const idx = paths.indexOf('design_id');
+            if (idx > 0) {
+                LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = paths[idx + 1];
+                th_design_prod.next('td').children('input').val(paths[idx + 1]);
+            }
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setHtml();
+        } else {
+            return false;
+        }
+    }
 }
 
 if (document.readyState === "complete") {
-    LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setHtml();
+    LAUNCHER_FRONT_PRODUCT_DETAIL.editor.onLoad();
 } else {
-    window.addEventListener("load", LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setHtml);
+    window.addEventListener("load", LAUNCHER_FRONT_PRODUCT_DETAIL.editor.onLoad);
 }
 window.addEventListener("message", LAUNCHER_FRONT_PRODUCT_DETAIL.editor.receiveMessage);
