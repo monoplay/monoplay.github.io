@@ -28,7 +28,7 @@ LAUNCHER_FRONT_MYSHOP_WISHLIST.editor = {
         option.addClass("displaynone");
 
         option.each(function (index, item) {
-            const design_id = $(item).text().replace('[net.monoplay.design : ', '').replace(']', '');
+            const design_id = $(item).text().replace(/net.monoplay.design|:|\[|\]|\s/gi, "");
             const target = $(item).closest("div.description").find("a.ec-product-name").prop("href") +
                 '/design_id/' + design_id;
 
