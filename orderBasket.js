@@ -23,7 +23,7 @@ LAUNCHER_FRONT_ORDER_BASKET.editor = {
     setHtml: function () {
         // 옵션 안 보이게
         const option = $("span:contains('net.monoplay.design').optionStr");
-        option.addClass("displaynone");
+        option.closest("ul").addClass("displaynone");
 
         option.each(function (index, item) {
             const design_id = $(item).text().replace(/net.monoplay.design|:|\[|\]|\s/gi, "");
