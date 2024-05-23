@@ -42,3 +42,18 @@
         ]
     }
 }
+ 
+{
+    "shop_no": 1,
+    "request": {
+        "src": "https://monoplay.github.io/productRecent.js",
+        "display_location": [
+            "PRODUCT_RECENT"
+        ],
+        "exclude_path": [
+        ],
+        "skin_no": [
+            3
+        ]
+    }
+}
