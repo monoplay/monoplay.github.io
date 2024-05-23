@@ -24,18 +24,19 @@ LAUNCHER_FRONT_MYSHOP_WISHLIST.editor = {
         // button 안 보이게
         $('div.prdBox .buttonGroup').addClass("displaynone");
         // 옵션 안 보이게
-        const option = $("span:contains('net.monoplay.design').optionStr");
-        option.addClass("displaynone");
+        $("span:contains('net.monoplay.design').optionStr").addClass("displaynone");
+        // const option = $("span:contains('net.monoplay.design').optionStr");
+        // option.addClass("displaynone");
 
-        option.each(function (index, item) {
-            const design_id = $(item).text().replace(/net.monoplay.design|:|\[|\]|\s/gi, "");
-            const target = $(item).closest("div.description").find("a.ec-product-name").prop("href") +
-                '/design_id/' + design_id;
-            
-            // target url ㅂㅏ꾸기
-            $(item).closest("div.description").find("a.ec-product-name").prop("href", target);
-            $(item).closest("div.prdBox").children("div.thumbnail").find("a:eq(0)").prop("href", target);
-        });
+        // option.each(function (index, item) {
+        //     const design_id = $(item).text().replace(/net.monoplay.design|:|\[|\]|\s/gi, "");
+        //     const target = $(item).closest("div.description").find("a.ec-product-name").prop("href") +
+        //         '/design_id/' + design_id;
+        //
+        //     // target url ㅂㅏ꾸기
+        //     $(item).closest("div.description").find("a.ec-product-name").prop("href", target);
+        //     $(item).closest("div.prdBox").children("div.thumbnail").find("a:eq(0)").prop("href", target);
+        // });
     },
 }
 
