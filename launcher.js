@@ -33,11 +33,11 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         //     imgSource: $('div.thumbnail a img').attr('src'),
         //     imgAlt: $('div.thumbnail a img').attr('alt'),
         //     url: LAUNCHER_FRONT_PRODUCT_DETAIL.editor.url
-        // }, 'https://store.moonsinsa.com:3000');
+        // }, 'https://store.moonsinsa.com:8080');
         $("div.app-monoplay-editor-background").removeClass("displaynone");
     },
     receiveMessage: function (e) {
-        if (e.origin !== 'https://store.moonsinsa.com:3000') return false;
+        if (e.origin !== 'https://store.moonsinsa.com:8080') return false;
 
         if (e.data.message.length > 0) {
             $("th:contains('net.monoplay.design')").next('td').children('input').val(e.data.message);
@@ -87,10 +87,10 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = $("th:contains('net.monoplay.design')").next('td').children('input').val();
 
         if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
-            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:8080/design/" +
                 LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.query;
         } else {
-            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:8080/design/" +
                 window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.query;
         }
 
@@ -99,7 +99,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     setHtml: function () {
 
         // 옵션 안 보이게
-        // th_design_prod.eq(0).parent("tr").addClass("displaynone");
+        $("th:contains('net.monoplay.design')").eq(0).parent("tr").addClass("displaynone");
         if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
             LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setModify();
         } else {
