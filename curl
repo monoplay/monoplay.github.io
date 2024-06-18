@@ -1,6 +1,21 @@
 {
     "shop_no": 1,
     "request": {
+        "src": "https://monoplay.github.io/launcher_local.js",
+        "display_location": [
+            "PRODUCT_DETAIL"
+        ],
+        "exclude_path": [
+        ],
+        "skin_no": [
+            3,4
+        ]
+    }
+}
+
+{
+    "shop_no": 1,
+    "request": {
         "src": "https://monoplay.github.io/launcher.js",
         "display_location": [
             "PRODUCT_DETAIL"
@@ -8,7 +23,7 @@
         "exclude_path": [
         ],
         "skin_no": [
-            3
+            3,4
         ]
     }
 }
@@ -23,7 +38,7 @@
         "exclude_path": [
         ],
         "skin_no": [
-            3
+            3,4
         ]
     }
 }
@@ -38,7 +53,7 @@
         "exclude_path": [
         ],
         "skin_no": [
-            3
+            3,4
         ]
     }
 }
@@ -53,7 +68,7 @@
         "exclude_path": [
         ],
         "skin_no": [
-            3
+            3,4
         ]
     }
 }
