@@ -37,7 +37,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         $("div.app-monoplay-editor-background").removeClass("displaynone");
     },
     receiveMessage: function (e) {
-        if (e.origin !== 'https://store.moonsinsa.com:3000') return false;
+        if (e.origin !== 'https://dev.moonsinsa.com:3000') return false;
 
         if (e.data.message.length > 0) {
             $("th:contains('net.monoplay.design')").next('td').children('input').val(e.data.message);
@@ -87,10 +87,10 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id = $("th:contains('net.monoplay.design')").next('td').children('input').val();
 
         if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
-            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://dev.moonsinsa.com:3000/design/" +
                 LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.query;
         } else {
-            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://store.moonsinsa.com:3000/design/" +
+            LAUNCHER_FRONT_PRODUCT_DETAIL.editor.target = "https://dev.moonsinsa.com:3000/design/" +
                 window.aLogData.mid + "/" + window.aLogData.shop_no + "/" + window.iProductNo + LAUNCHER_FRONT_PRODUCT_DETAIL.editor.query;
         }
 
