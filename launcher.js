@@ -77,10 +77,10 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         $(".app-monoplay-button-design").remove();
         // white 디자인 버튼 추가
         $("div.action_button #actionCart").before(
-            "<button type='button' class='btnNormal sizeL app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
+            "<button type='button' class='btnNormal sizeL app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN 수정</button>"
         );
         $("#orderFixArea button.actionCart").before(
-            "<button type='button' class='btnNormal sizeM app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
+            "<button type='button' class='btnNormal sizeM app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN 수정</button>"
         );
     },
     setTarget: function () {
@@ -99,7 +99,7 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
     setHtml: function () {
 
         // 옵션 안 보이게
-        // $("th:contains('net.monoplay.design')").eq(0).parent("tr").addClass("displaynone");
+        $("th:contains('net.monoplay.design')").eq(0).parent("tr").addClass("displaynone");
         if (LAUNCHER_FRONT_PRODUCT_DETAIL.editor.design_id.length > 0) {
             LAUNCHER_FRONT_PRODUCT_DETAIL.editor.setModify();
         } else {
