@@ -77,10 +77,10 @@ LAUNCHER_FRONT_PRODUCT_DETAIL.editor = {
         $(".app-monoplay-button-design").remove();
         // white 디자인 버튼 추가
         $("div.action_button #actionCart").before(
-            "<button type='button' class='btnNormal sizeL app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
+            "<button type='button' class='btnNormal sizeL app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN 수정</button>"
         );
         $("#orderFixArea button.actionCart").before(
-            "<button type='button' class='btnNormal sizeM app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN</button>"
+            "<button type='button' class='btnNormal sizeM app-monoplay-button-design' onClick='LAUNCHER_FRONT_PRODUCT_DETAIL.editor.openEditor()'>DESIGN 수정</button>"
         );
     },
     setTarget: function () {
