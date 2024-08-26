@@ -31,21 +31,6 @@
 {
     "shop_no": 1,
     "request": {
-        "src": "https://monoplay.github.io/wishList.js",
-        "display_location": [
-            "MYSHOP_WISHLIST"
-        ],
-        "exclude_path": [
-        ],
-        "skin_no": [
-            3,4
-        ]
-    }
-}
-
-{
-    "shop_no": 1,
-    "request": {
         "src": "https://monoplay.github.io/orderBasket.js",
         "display_location": [
             "ORDER_BASKET"
@@ -72,3 +57,64 @@
         ]
     }
 }
+
+{
+    "shop_no": 1,
+    "request": {
+        "src": "https://monoplay.github.io/wishList.js",
+        "display_location": [
+            "MYSHOP_WISHLIST"
+        ],
+        "exclude_path": [
+        ],
+        "skin_no": [
+            3,4
+        ]
+    }
+}
+
+{
+    "shop_no": 1,
+    "request": {
+        "src": "https://monoplay.github.io/wishList.js",
+        "display_location": [
+            "MYSHOP_MAIN"
+        ],
+        "exclude_path": [
+        ],
+        "skin_no": [
+            3,4
+        ]
+    }
+}
+
+{
+    "shop_no": 1,
+    "request": {
+        "src": "https://monoplay.github.io/wishList.js",
+        "display_location": [
+            "MYSHOP_ORDER_LIST"
+        ],
+        "exclude_path": [
+        ],
+        "skin_no": [
+            3,4
+        ]
+    }
+}
+
+{
+    "shop_no": 1,
+    "request": {
+        "src": "https://monoplay.github.io/wishList.js",
+        "display_location": [
+            "MYSHOP_ORDER_DETAIL"
+        ],
+        "exclude_path": [
+        ],
+        "skin_no": [
+            3,4
+        ]
+    }
+}
+
