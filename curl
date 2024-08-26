@@ -76,7 +76,7 @@
 {
     "shop_no": 1,
     "request": {
-        "src": "https://monoplay.github.io/wishList.js",
+        "src": "https://monoplay.github.io/myShopMain.js",
         "display_location": [
             "MYSHOP_MAIN"
         ],
@@ -91,7 +91,7 @@
 {
     "shop_no": 1,
     "request": {
-        "src": "https://monoplay.github.io/wishList.js",
+        "src": "https://monoplay.github.io/myShopOrderList.js",
         "display_location": [
             "MYSHOP_ORDER_LIST"
         ],
@@ -106,7 +106,7 @@
 {
     "shop_no": 1,
     "request": {
-        "src": "https://monoplay.github.io/wishList.js",
+        "src": "https://monoplay.github.io/myShopOrderDetail.js",
         "display_location": [
             "MYSHOP_ORDER_DETAIL"
         ],
