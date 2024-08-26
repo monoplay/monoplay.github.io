@@ -1,10 +1,10 @@
-var LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL = LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL || {};
-LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL.makeNamespace = function (ns_string) {
+var LAUNCHER_FRONT_MYSHOP_MAIN = LAUNCHER_FRONT_MYSHOP_MAIN || {};
+LAUNCHER_FRONT_MYSHOP_MAIN.makeNamespace = function (ns_string) {
     let parts = ns_string.split('.'),
-        parent = LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL,
+        parent = LAUNCHER_FRONT_MYSHOP_MAIN,
         i;
     // 처음에 중복되는 전역 객체명은 제거
-    if (parts[0] === "LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL") {
+    if (parts[0] === "LAUNCHER_FRONT_MYSHOP_MAIN") {
         parts = parts.slice(1);
     }
     for (i = 0; i < parts.length; i += 1) {
@@ -17,9 +17,9 @@ LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL.makeNamespace = function (ns_string) {
     return parent;
 }
 // 네임스페이스 생성 함수
-LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL.makeNamespace('LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL.editor');
+LAUNCHER_FRONT_MYSHOP_MAIN.makeNamespace('LAUNCHER_FRONT_MYSHOP_MAIN.editor');
 
-LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL.editor = {
+LAUNCHER_FRONT_MYSHOP_MAIN.editor = {
     setHtml: function () {
         // 옵션 안 보이게
         $("p:contains('net.monoplay.design').optionGroup").addClass("displaynone");
@@ -27,7 +27,7 @@ LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL.editor = {
 }
 
 if (document.readyState === "complete") {
-    LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL.editor.setHtml();
+    LAUNCHER_FRONT_MYSHOP_MAIN.editor.setHtml();
 } else {
-    window.addEventListener("load", LAUNCHER_FRONT_MYSHOP_ORDER_DETAIL.editor.setHtml);
+    window.addEventListener("load", LAUNCHER_FRONT_MYSHOP_MAIN.editor.setHtml);
 }
